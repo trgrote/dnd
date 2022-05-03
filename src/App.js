@@ -1,14 +1,33 @@
 import logo from './logo.svg';
 import './App.css';
-import { BrowserRouter, Link, Route, Routes } from 'react-router-dom';
+import { BrowserRouter, Link, Route, Routes, NavLink } from 'react-router-dom';
 import Initiative from './routes/initiative/Initiative';
-import { Nav } from 'react-bootstrap';
+import { Nav, Navbar, Container, NavDropdown } from 'react-bootstrap';
+import { LinkContainer } from 'react-router-bootstrap';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 function App() {
   return (
     <BrowserRouter>
-    <div className="App">
-      <header className="App-header">
+      <div className="App">
+          <Navbar bg="dark" variant="dark">
+          <Container>
+          <LinkContainer to="/">
+              <Navbar.Brand>
+                Taylor's Web Sight
+              </Navbar.Brand>
+            </LinkContainer>
+            <Navbar.Collapse id="basic-navbar-nav">
+            <Nav className="me-auto">
+              <NavDropdown title="Utilities" id="basic-nav-dropdown">
+                <LinkContainer to="initiative">
+                  <NavDropdown.Item>Initiative</NavDropdown.Item>
+                </LinkContainer>
+              </NavDropdown>
+            </Nav>
+          </Navbar.Collapse>
+          </Container>
+        </Navbar>
           <Routes>
             <Route path="/" element={
               <>
@@ -26,8 +45,7 @@ function App() {
             }/>
             <Route path="initiative" element={<Initiative/>}/>
           </Routes>
-      </header>
-    </div>
+      </div>
     </BrowserRouter>
   );
 }

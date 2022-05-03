@@ -17,19 +17,15 @@ const Initiative = () => {
     ]);
 
     return (
-    <>
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-            Initiative!
-        </p>
-        <ul>
-        {
-            pcList.map(pc => 
-                <Record key={pc.id} {...pc}/>
-            )
-        }
-        </ul>
-    </>
+        <div className="initiative">
+            <ul>
+            {
+                pcList.map(pc => 
+                    <Record key={pc.id} {...pc}/>
+                )
+            }
+            </ul>
+        </div>
     );
 }
 

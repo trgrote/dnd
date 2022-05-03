@@ -1,30 +1,50 @@
 import React, { useState } from 'react';
-import logo from '../../logo.svg';
+import { Table } from 'react-bootstrap';
 import Record from './Record';
 
 const Initiative = () => {
+    // Column Config
+    const [columns, setColumns] = useState([
+        {
+            label: "Initiative",
+            value: "initiative"
+        },
+        {
+            label: "Name",
+            value: "name"
+        }
+    ]);
+
+    // Rows
     const [pcList, setPCList] = useState([
         {
             id: 0,
             name: "Test",
-            value: 0
+            initiative: 0
         },
         {
             id: 1,
             name: "Test 2",
-            value: 2
+            initiative: 2
         }
     ]);
 
     return (
         <div className="initiative">
-            <ul>
-            {
-                pcList.map(pc => 
-                    <Record key={pc.id} {...pc}/>
-                )
-            }
-            </ul>
+            <Table striped bordered hover>
+                <thead>
+                    <tr>
+                    {
+                        columns.map((c, i) => <th key={i}>{c.label}</th>)
+                    }
+                    </tr>
+                </thead>
+                <tbody>
+                {
+                    pcList.map(pc => <Record key={pc.id} columns={columns} pcInfo={pc}/>)
+                }
+                </tbody>
+            </Table>
         </div>
     );
 }

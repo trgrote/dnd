@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Table } from 'react-bootstrap';
 import Record from './Record';
 
-const Initiative = () => {
+const TurnOrder = () => {
     // Column Config
     const [columns, setColumns] = useState([
         {
@@ -34,7 +34,7 @@ const Initiative = () => {
     };
 
     return (
-        <div className="initiative">
+        <div className="turn-order">
             <Table striped bordered hover>
                 <thead>
                     <tr>
@@ -65,4 +65,4 @@ const Initiative = () => {
     );
 }
 
-export default Initiative;
+export default TurnOrder;

@@ -29,6 +29,10 @@ const Initiative = () => {
         }
     ]);
 
+    const sortPCList = (list, sortValue) => {
+        return list.slice().sort((a, b) => b[sortValue] - a[sortValue]);
+    };
+
     return (
         <div className="initiative">
             <Table striped bordered hover>
@@ -41,7 +45,19 @@ const Initiative = () => {
                 </thead>
                 <tbody>
                 {
-                    pcList.map(pc => <Record key={pc.id} columns={columns} pcInfo={pc}/>)
+                    pcList.map(pc => 
+                        <Record key={pc.id} 
+                                columns={columns} 
+                                pcInfo={pc} 
+                                onPCInfoChange={newPCInfo => {
+                                    const newPCList = [
+                                        ...pcList.filter(pcInfo => pcInfo.id !== pc.id),
+                                        newPCInfo
+                                    ];
+                                    setPCList(sortPCList(newPCList, "initiative"));
+                                }}
+                        />
+                    )
                 }
                 </tbody>
             </Table>

@@ -29,6 +29,8 @@ const TurnOrder = () => {
         }
     ]);
 
+    const [currentPCID, setCurrentPCID] = useState(pcList.find(pc => true).id);
+
     const sortPCList = (list, sortValue) => {
         return list.slice().sort((a, b) => b[sortValue] - a[sortValue]);
     };

@@ -51,6 +51,7 @@ const TurnOrder = () => {
                         <Record key={pc.id} 
                                 columns={columns} 
                                 pcInfo={pc} 
+                                isTurn={currentPCID === pc.id}
                                 onPCInfoChange={newPCInfo => {
                                     const newPCList = [
                                         ...pcList.filter(pcInfo => pcInfo.id !== pc.id),

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Table } from 'react-bootstrap';
+import { Button, Table } from 'react-bootstrap';
 import Record from './Record';
 
 const TurnOrder = () => {
@@ -63,6 +63,18 @@ const TurnOrder = () => {
                 }
                 </tbody>
             </Table>
+            <Button onClick={() =>
+                setPCList([
+                    ...pcList,
+                    {
+                        id: Math.max(...pcList.map(pc => pc.id)) + 1,
+                        name: "New Player",
+                        initiative: 0
+                    }
+                ])
+            }>
+                Add New PC
+            </Button>
         </div>
     );
 }

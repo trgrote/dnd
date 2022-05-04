@@ -37,7 +37,7 @@ const TurnOrder = () => {
 
     return (
         <div className="turn-order">
-            <Table striped bordered hover>
+            <Table striped bordered>
                 <thead>
                     <tr>
                     {

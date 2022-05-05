@@ -1,10 +1,10 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { Button, ButtonGroup, Table } from 'react-bootstrap';
 import PCRow from './PCRow';
 
 const TurnOrder = () => {
     // Column Config
-    const [columns, setColumns] = useState([
+    const [columns] = useState([
         {
             label: "Initiative",
             value: "initiative"

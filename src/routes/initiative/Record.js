@@ -1,13 +1,13 @@
 import React, { useState } from 'react';
-import { Form, FloatingLabel, Row, Col, FormControl } from 'react-bootstrap';
+import { FormControl } from 'react-bootstrap';
 
 const Record = (props) => {
-    const {pcInfo, onPCInfoChange, columns} = props;
+    const {pcInfo, onPCInfoChange, columns, isTurn} = props;
 
     const [localPCInfo, setLocalPCInfo] = useState({...pcInfo});
 
     return (
-        <tr>
+        <tr className={isTurn ? "highlighted-row" : ""}>
             {
                 columns.map((c, i) =>
                     <td key={i}>

@@ -33,3 +33,7 @@
     transform: rotate(360deg);
   }
 }
+
+.highlighted-row {
+  background-color: cyan;
+}

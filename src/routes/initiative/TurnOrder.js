@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Button, Table } from 'react-bootstrap';
+import { Button, ButtonGroup, Table } from 'react-bootstrap';
 import PCRow from './PCRow';
 
 const TurnOrder = () => {
@@ -59,6 +59,18 @@ const TurnOrder = () => {
 
     return (
         <div className="turn-order">
+            <ButtonGroup className='mb-2'>
+                <Button variant="primary" onClick={addNewPC}>
+                    Add New PC
+                </Button>
+                <Button variant="info" onClick={goToNextPC}>
+                    Next
+                </Button>
+                <Button variant="warning" onClick={() => setCurrentPCID(pcList.find(() => true).id)}>
+                    Reset
+                </Button>
+            </ButtonGroup>
+
             <Table striped bordered>
                 <thead>
                     <tr>
@@ -85,18 +97,7 @@ const TurnOrder = () => {
                     )
                 }
                 </tbody>
-            </Table>
-            <Button onClick={addNewPC}>
-                Add New PC
-            </Button>
-            <Button onClick={goToNextPC}>
-                Next
-            </Button>
-            <Button onClick={() =>
-                setCurrentPCID(pcList.find(pc => true).id)
-            }>
-                Reset
-            </Button>
+            </Table>            
         </div>
     );
 }

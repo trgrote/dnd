@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Button, Table } from 'react-bootstrap';
-import Record from './Record';
+import PCRow from './PCRow';
 
 const TurnOrder = () => {
     // Column Config
@@ -70,7 +70,7 @@ const TurnOrder = () => {
                 <tbody>
                 {
                     pcList.map((pc, i) => 
-                        <Record key={pc.id} 
+                        <PCRow key={pc.id} 
                                 columns={columns} 
                                 pcInfo={pc} 
                                 isTurn={currentPCID === pc.id}

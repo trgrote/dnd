@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { FormControl } from 'react-bootstrap';
 
-const Record = (props) => {
+const PCRow = (props) => {
     const {pcInfo, onPCInfoChange, columns, isTurn} = props;
 
     const [localPCInfo, setLocalPCInfo] = useState({...pcInfo});
@@ -30,4 +30,4 @@ const Record = (props) => {
     );
 };
 
-export default Record;
+export default PCRow;

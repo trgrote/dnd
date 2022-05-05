@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Button, Table } from 'react-bootstrap';
 import Record from './Record';
 
@@ -16,23 +16,45 @@ const TurnOrder = () => {
     ]);
 
     // Rows
-    const [pcList, setPCList] = useState([
-        {
-            id: 0,
-            name: "Test",
-            initiative: 0
-        },
-        {
-            id: 1,
-            name: "Test 2",
-            initiative: 2
+    const [pcList, setPCList] = useState([]);
+
+    const [currentPCID, setCurrentPCID] = useState();
+
+    const sortPCList = (list) => {
+        return list.slice().sort((a, b) => {
+            const sortValue = b.initiative - a.initiative;
+
+            // Fallback to id if the initiatives are the same
+            return sortValue === 0 ?
+                a.id - b.id :
+                sortValue;
+        });
+    };
+
+    const addNewPC = () => {
+        setPCList([
+            ...pcList,
+            {
+                id: pcList.length > 0 ? 
+                    Math.max(...pcList.map(pc => pc.id)) + 1 : 
+                    0,
+                name: "New Player",
+                initiative: 0
+            }
+        ]);
+    };
+
+    const goToNextPC = () => {
+        if (pcList.length === 0) {
+            return;
         }
-    ]);
 
-    const [currentPCID, setCurrentPCID] = useState(pcList.find(pc => true).id);
+        const currentIndex = pcList.findIndex(pc => pc.id === currentPCID);
+        const newIndex = currentIndex !== -1 ? 
+            (currentIndex + 1) % pcList.length : 
+            0;
 
-    const sortPCList = (list, sortValue) => {
-        return list.slice().sort((a, b) => b[sortValue] - a[sortValue]);
+        setCurrentPCID(pcList[newIndex].id);
     };
 
     return (
@@ -47,7 +69,7 @@ const TurnOrder = () => {
                 </thead>
                 <tbody>
                 {
-                    pcList.map(pc => 
+                    pcList.map((pc, i) => 
                         <Record key={pc.id} 
                                 columns={columns} 
                                 pcInfo={pc} 
@@ -57,24 +79,23 @@ const TurnOrder = () => {
                                         ...pcList.filter(pcInfo => pcInfo.id !== pc.id),
                                         newPCInfo
                                     ];
-                                    setPCList(sortPCList(newPCList, "initiative"));
+                                    setPCList(sortPCList(newPCList));
                                 }}
                         />
                     )
                 }
                 </tbody>
             </Table>
-            <Button onClick={() =>
-                setPCList([
-                    ...pcList,
-                    {
-                        id: Math.max(...pcList.map(pc => pc.id)) + 1,
-                        name: "New Player",
-                        initiative: 0
-                    }
-                ])
-            }>
+            <Button onClick={addNewPC}>
                 Add New PC
+            </Button>
+            <Button onClick={goToNextPC}>
+                Next
+            </Button>
+            <Button onClick={() =>
+                setCurrentPCID(pcList.find(pc => true).id)
+            }>
+                Reset
             </Button>
         </div>
     );

@@ -12,6 +12,10 @@ const TurnOrder = () => {
         {
             label: "Name",
             value: "name"
+        },
+        {
+            label: "Actions",
+            value: "actions"
         }
     ]);
 

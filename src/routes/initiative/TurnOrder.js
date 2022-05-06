@@ -20,7 +20,13 @@ const TurnOrder = () => {
     ]);
 
     // Rows
-    const [pcList, setPCList] = useState([]);
+    const [pcList, setPCList] = useState([
+        {
+            id: 0,
+            name: "New Player",
+            initiative: 0
+        }
+    ]);
 
     const [currentPCID, setCurrentPCID] = useState();
 

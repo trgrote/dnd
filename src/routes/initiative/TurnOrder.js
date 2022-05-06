@@ -57,6 +57,12 @@ const TurnOrder = () => {
         setCurrentPCID(pcList[newIndex].id);
     };
 
+    const deletePC = (pcID) => {
+        setPCList([
+            ...pcList.filter(pcInfo => pcInfo.id !== pcID),
+        ]);
+    };
+
     return (
         <div className="turn-order">
             <ButtonGroup className='mb-2'>
@@ -93,6 +99,7 @@ const TurnOrder = () => {
                                     ];
                                     setPCList(sortPCList(newPCList));
                                 }}
+                                deletePC={deletePC}
                         />
                     )
                 }
